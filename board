@@ -32,14 +32,14 @@ def make_walls():
         Docs here:  http://vpython.org/contents/docs/box.html
     """
     w0 = box(pos=(-20,0,0), axis=(0,0,1), 
-             length=40, width=1, height = 2, color=color.red)
+             length=40, width=1, height = 2, color=color.red, material=materials.wood)
     w1 = box(pos=(0,0,-20), axis=(1,0,0), 
-             length=40, width=1, height = 2, color=(1,0,0))
-    w2 = box(pos=(20,0,0), axis=(0,0,1), 
-             length=40, width=1, height = 2, color=color.cyan)
-    w3 = box(pos=(0,0,20), axis=(1,0,0), 
-             length=40, width=1, height = 2, color=color.red)
-    list_of_walls = [ w0, w1, w2, w3 ]
+             length=40, width=1, height = 2, color=color.red, material=materials.wood)
+    w2 = box(pos=(0,0,20), axis=(1,0,0), 
+             length=40, width=1, height = 2, color=color.red, material=materials.wood)
+    w3 = box(pos=(20,0,0), axis=(0,0,1), 
+             length=40, width=1, height = 2, color=color.red, material=materials.wood)
+    list_of_walls = [ w0, w1 , w2, w3]
     return list_of_walls
 
 
@@ -111,7 +111,7 @@ def main():
 
         # collision check for the ball and alien...
         # vector docs:   http://vpython.org/contents/docs/vector.html
-        vec_from_ball_to_alien = alien.pos - ball.pos
+        vec_from_ball_to_alien = alien.pos - snek.pos
         if mag( vec_from_ball_to_alien ) < ball.radius:
             print "You've freed the alien! Going home..."
             alien.vel = vector(0,5,0)
@@ -120,18 +120,18 @@ def main():
         # here is an example of one wall collision - you'll need more!
         
         # colliding with wall 0, w0:
-        if snek.pos.x < w0.pos.x:  # w0 has the smallest x value
-            snek.pos.x = w0.pos.x  # make sure we stay in bounds
-            snek.vel.x = -1.0 * ball.vel.x   # bounce (in the x direction)
-        if snek.pos.z < w1.pos.z:
-            snek.pos.z = w1.pos.z
-            snek.vel.z = -1.0*ball.vel.z
-        if snek.pos.x > w2.pos.x:
-            snek.pos.x = w2.pos.x
-            snek.vel.x = -1.0 * ball.vel.x
-        if snek.pos.z > w3.pos.z:
-            snek.pos.z = w3.pos.z
-            snek.vel.z = -1.0 * ball.vel.z
+        if snek.pos.x < w0.pos.x+1.5:  # w0 has the smallest x value
+            snek.pos.x = w0.pos.x+1.5  # make sure we stay in bounds
+            snek.vel.x = -1.0 * snek.vel.x   # bounce (in the x direction)
+        if snek.pos.z < w1.pos.z+1.5:  # w1 has the smallest z value
+            snek.pos.z = w1.pos.z+1.5  # make sure we stay in bounds
+            snek.vel.z = -1.0 * snek.vel.z   # bounce (in the x direction)
+        if snek.pos.x > w2.pos.x +18.5:  # w0 has the smallest x value
+            snek.pos.x = w2.pos.x +18.5  # make sure we stay in bounds
+            snek.vel.x = -1.0 * snek.vel.x   # bounce (in the x direction)
+        if snek.pos.z > w3.pos.z+18.5:  # w0 has the smallest x value
+            snek.pos.z = w3.pos.z+18.5  # make sure we stay in bounds
+            snek.vel.z = -1.0 * snek.vel.z   # bounce (in the x direction)
 
         # ----- end of other checks - especially *collisions*  -----
 
@@ -184,3 +184,4 @@ def main():
 # This should be the FINAL thing in the file...
 if __name__ == "__main__":   # did we just RUN this file?
     main()                   # if so, we call main()
+
