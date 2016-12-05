@@ -10,11 +10,18 @@ Point counter
 
 Snake Body
 
-`be able to move properly (idk how to describe this) like a snek in snake`
-
+`snek should face new direction when arrow keys are pressed`
 `add another sphere to the body after it eats a pellet`
 
-Die when the snake hits itself
+End game
+
+`die when the snake hits itself`
+`die when the snake hits walls`
+`display final score`
+
+General gameplay
+
+`new pellet should be added to a random location on the board`
 
 
 ## Milestone
