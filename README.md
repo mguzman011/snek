@@ -26,6 +26,9 @@ General gameplay
 
 `new pellet should be added to a random location on the board`
 
+#Ideas for later
+Grutor mode
+Meme mode
 
 ## Milestone
 
