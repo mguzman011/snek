@@ -14,7 +14,7 @@ from visual import *
 import random
 
 def make_snek():
-    """ smallest possible example of a vPython simulation """
+    """ Builds the snake model."""
     snek = frame( pos=(0,0,0) )
     color.brown = (0.46,0.28,0.1)
     python = sphere(frame = snek, pos=(-0.5,0,0),radius=1,color = color.brown, material=materials.BlueMarble)
