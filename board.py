@@ -44,11 +44,6 @@ def main():
     Walls = make_walls()
     w0, w1, w2, w3 = Walls   # and gives each one a name...
 
-    # color names? they are black, blue, cyan, green, gray(v), 0.0<=v<=1.0
-    #                       magenta, orange, red, white, yellow
-    # or you can use rgb tuples (from 0.0 to 1.0, not 0 to 255), e.g.,
-    ball = sphere( radius=1, pos=(10,0,0), color=(1,0.7,0.2) )
-    ball.vel = vector(0,0,0)   # this is the "game piece" w/ zero starting vel.
 
     snek = make_snek()
     snek.vel = vector(0,0,0)
@@ -58,7 +53,7 @@ def main():
     dt = 1.0/(1.0*RATE)   # the amount of time per loop (again, if possible)
     autocenter = True     # do you want vPython to keep the scene centered?
 
-    #make a pellet
+    # Make a pellet
     pelletposx = random.randint(-19,19)
     pelletposz = random.randint(-19,19)
     pellet = sphere( radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white )
@@ -70,7 +65,6 @@ def main():
 
         # +++++ start of all position updates: once per loop +++++ 
 
-        ball.pos = ball.pos + ball.vel*dt           # PHYSICS!
         snek.pos = snek.pos + snek.vel
 
         # +++++ end of all once-per-loop position updates +++++ 
@@ -111,11 +105,10 @@ def main():
 
         # here, we see if the user has pressed any keys
         if scene.kb.keys:   # any keypress to be handled?
-            s = scene.kb.getkey()
-            # print "You pressed the key", s  
+            s = scene.kb.getkey() # print "You pressed the key", s  
 
-            # Key presses to give the ball velocity (in the x-z plane)
-            dx = 10; dz = 10   # easily-changeable values
+            # Key presses to give the snek velocity (in the x-z plane)
+            dx = .5; dz = .5   # easily-changeable values
             if s == 'left': snek.vel = vector(-dx,0,0)
             if s == 'right': snek.vel = vector(dx,0,0)
             if s == 'up': snek.vel = vector(0,0,-dz)
@@ -123,27 +116,16 @@ def main():
 
             # space to stop everything
             if s == ' ':  # space to stop things
-                ball.vel = vector(0,0,0)
-                alien.vel = vector(0,0,0)
                 snek.vel = vector (0,0,0)
 
             # capital R to reset things
             if s == 'R':
-                ball.vel = vector(0,0,0)
-                ball.pos = vector(10,0,0)
-                alien.vel = vector(0,0,0)
-                alien.pos = vector(-10,0,random.uniform(-10,10))
                 snek.vel = vector(0,0,0)
                 snek.pos = vector(0,0,0)
 
             if s == 'Q':  # Quit!
                 print "Quitting..."
                 break  # breaks out of the main loop
-
-            # mouse is better handled only when a particular key is pressed
-            # see http://vpython.org/contents/docs/mouse.html for more
-
-        # ===== end of handling user events: keypresses and mouse =====
 
     print "Done with the main loop. Ending this vPython session..."
     print "Close the vPython window to finish."
