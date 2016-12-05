@@ -12,7 +12,7 @@ Snake Body
 
 `snek should face new direction when arrow keys are pressed`
 
-~`add another sphere to the body after it eats a pellet`~
+//`add another sphere to the body after it eats a pellet`//
 
 End game
 
