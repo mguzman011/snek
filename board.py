@@ -109,15 +109,10 @@ def main():
 
             # Key presses to give the ball velocity (in the x-z plane)
             dx = 10; dz = 10   # easily-changeable values
-            if s == 'left':
-                snek.vel = vector(-dx,0,0)
-                snek.rotate(angle=pi/2, axis=(0,1,0), origin=snek.pos)
-            if s == 'right': 
-                snek.vel = vector(dx,0,0)
-            if s == 'up': 
-                snek.vel = vector(0,0,-dz)
-            if s == 'down': 
-                snek.vel = vector(0,0,dz)
+            if s == 'left': snek.vel = vector(-dx,0,0)
+            if s == 'right': snek.vel = vector(dx,0,0)
+            if s == 'up': snek.vel = vector(0,0,-dz)
+            if s == 'down': snek.vel = vector(0,0,dz)
 
             # space to stop everything
             if s == ' ':  # space to stop things
