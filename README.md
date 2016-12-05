@@ -1,6 +1,9 @@
 # Final Snek
 
 #WHAT NEEDS TO BE IMPLEMENTED
+
+Change the camera view
+
 Point counter
 
 `every time the snek eats a pellet, add a point`
