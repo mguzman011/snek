@@ -1,7 +1,7 @@
 # Final Snek
 
 
-# Milestone
+## Milestone
 
 A text document called milestone.txt with your name and the name of your partner (if any), the project that you've chosen, and a brief description of your plans for your game. One paragraph will suffice for the description. Also, include a description of the objective of the game - and how we should run it!
 
