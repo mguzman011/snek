@@ -28,6 +28,7 @@ General gameplay
 
 #Ideas for later
 Grutor mode
+
 Meme mode
 
 ## Milestone
