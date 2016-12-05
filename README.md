@@ -2,11 +2,12 @@
 
 #WHAT NEEDS TO BE IMPLEMENTED
 Point counter
-every time the snek eats a pellet, add a point
+`every time the snek eats a pellet, add a point`
 
 #Snake Body
-be able to move properly (idk how to describe this) like a snek in snake
-add another sphere to the body after it eats a pellet
+`be able to move properly (idk how to describe this) like a snek in snake`
+
+`add another sphere to the body after it eats a pellet`
 
 #Die when the snake hits itself
 
