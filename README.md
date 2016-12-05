@@ -2,7 +2,7 @@
 
 #WHAT NEEDS TO BE IMPLEMENTED
 
-Change the camera view
+DONE Change the camera view
 
 Point counter
 
