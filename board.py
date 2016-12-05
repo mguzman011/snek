@@ -59,8 +59,8 @@ def main():
     autocenter = True     # do you want vPython to keep the scene centered?
 
     #make a pellet
-    pelletposx = random.randint(-20, 20)
-    pelletposz = random.randint(-20,20)
+    pelletposx = random.randint(-19,19)
+    pelletposz = random.randint(-19,19)
     pellet = sphere( radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white )
     bodypos = 0.5
 
@@ -80,7 +80,7 @@ def main():
         vec_from_pellet_to_snek = pellet.pos-snek.pos
         if mag(vec_from_pellet_to_snek) < 2:
             pellet.visible = False
-            pelletposx = random.randint(-19, 19)
+            pelletposx = random.randint(-19,19)
             pelletposz = random.randint(-19,19)
             pellet = sphere( radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white )
             body = sphere(frame = snek, pos=(bodypos,0,0), radius=.6 , color = color.brown, material=materials.BlueMarble)
