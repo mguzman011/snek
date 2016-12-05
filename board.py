@@ -82,16 +82,20 @@ def main():
         # colliding with wall 0, w0:
         if snek.pos.x < w0.pos.x+1.5:  # w0 has the smallest x value
             snek.pos.x = w0.pos.x+1.5  # make sure we stay in bounds
-            snek.vel.x = -1.0 * snek.vel.x   # bounce (in the x direction)
+            snek.vel.x = 0   # bounce (in the x direction)
+            exit()
         if snek.pos.z < w1.pos.z+1.5:  # w1 has the smallest z value
             snek.pos.z = w1.pos.z+1.5  # make sure we stay in bounds
-            snek.vel.z = -1.0 * snek.vel.z   # bounce (in the x direction)
+            snek.vel.z = 0   # bounce (in the x direction)
+            exit()
         if snek.pos.x > w2.pos.x +18.5:  # w0 has the smallest x value
             snek.pos.x = w2.pos.x +18.5  # make sure we stay in bounds
-            snek.vel.x = -1.0 * snek.vel.x   # bounce (in the x direction)
+            snek.vel.x = 0   # bounce (in the x direction)
+            exit()
         if snek.pos.z > w3.pos.z+18.5:  # w0 has the smallest x value
             snek.pos.z = w3.pos.z+18.5  # make sure we stay in bounds
-            snek.vel.z = -1.0 * snek.vel.z   # bounce (in the x direction)
+            snek.vel.z = 0   # bounce (in the x direction)
+            exit()
 
         # ----- end of other checks - especially *collisions*  -----
 
@@ -101,10 +105,10 @@ def main():
         # here, we see if the user has pressed any keys
         if scene.kb.keys:   # any keypress to be handled?
             s = scene.kb.getkey()
-            print "You pressed the key", s  
+            # print "You pressed the key", s  
 
             # Key presses to give the ball velocity (in the x-z plane)
-            dx = .5; dz = .5   # easily-changeable values
+            dx = 10; dz = 10   # easily-changeable values
             if s == 'left': snek.vel = vector(-dx,0,0)
             if s == 'right': snek.vel = vector(dx,0,0)
             if s == 'up': snek.vel = vector(0,0,-dz)
