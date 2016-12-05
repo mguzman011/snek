@@ -7,7 +7,7 @@
 #   docs: http://vpython.org/contents/docs/index.html
 #   gallery of shapes: http://vpython.org/contents/docs/primitives.html
 #
-# Name:
+# Name: Michael Guzman, Shruthi Sukir, Emily Zhao
 #
 
 from visual import *
