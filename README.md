@@ -2,6 +2,7 @@
 
 #WHAT NEEDS TO BE IMPLEMENTED
 Point counter
+
 `every time the snek eats a pellet, add a point`
 
 #Snake Body
