@@ -1,12 +1,5 @@
 #
-# billiard_bounce.py
-#
-# starting file for the game in Lab 11 (hw11pr1.zip)
-#
-# If you enjoy vPython, you might consider it as a final project...
-#   docs: http://vpython.org/contents/docs/index.html
-#   gallery of shapes: http://vpython.org/contents/docs/primitives.html
-#
+# board.py
 # Name: Michael Guzman, Shruthi Sukir, Emily Zhao
 #
 
@@ -42,29 +35,8 @@ def make_walls():
     list_of_walls = [ w0, w1 , w2, w3]
     return list_of_walls
 
-
-def make_alien():
-    """ makes an alien! -- in the process, this shows how to
-        group many objects into a single coordinate system ("frame")
-        and treat that as a single object
-        Docs here:  http://vpython.org/contents/docs/frame.html
-    """
-    alien = frame( pos=(10,0,-10) )  # makes a new "frame" == a container
-    # with a local coordinate system that can have any number of parts...
-    # here are the "parts":
-    sphere( frame=alien, radius=1, color=color.green )
-    sphere( frame=alien, radius=0.3, pos=(.7,.5,.2), color=color.white )
-    sphere( frame=alien, radius=0.3, pos=(.2,.5,.7), color=color.white )
-    cylinder( frame=alien, pos=(0,.9,-.2), axis=(.02,.2,-.02),  # the hat!
-              radius=.7, color=color.magenta)
-    return alien   # always use the _frame_, not any of its parts...
-
-
 def main():
-    """ this is the main function, including
-        all of the data objects and the "event loop"
-        which is the while True: loop that will
-        be the universe's "time stream" :-)
+    """ this is the main function, including all of the data objects and the "event loop" which is the while True: loop that will be the universe's "time stream" :-)
     """
     # create an object named floor of class (type) box:
     floor = box(pos=(0,-1,0), length=40, width=40, height = 0.5, color=color.white)
@@ -72,10 +44,6 @@ def main():
     # this creates a list of walls 
     Walls = make_walls()
     w0, w1, w2, w3 = Walls   # and gives each one a name...
-
-    # this creates an alien!  (it's a vPython frame)
-    alien = make_alien()
-    alien.vel = vector(0,0,0)  # no velocity (yet!)
 
     # color names? they are black, blue, cyan, green, gray(v), 0.0<=v<=1.0
     #                       magenta, orange, red, white, yellow
@@ -98,26 +66,12 @@ def main():
         # +++++ start of all position updates: once per loop +++++ 
 
         ball.pos = ball.pos + ball.vel*dt           # PHYSICS!
-        alien.pos = alien.pos + alien.vel*dt
         snek.pos = snek.pos + snek.vel*dt
 
-
         # +++++ end of all once-per-loop position updates +++++ 
-
-
-
+        
 
         # ----- start of other checks - especially *collisions* -----
-
-        # collision check for the ball and alien...
-        # vector docs:   http://vpython.org/contents/docs/vector.html
-        vec_from_ball_to_alien = alien.pos - snek.pos
-        if mag( vec_from_ball_to_alien ) < ball.radius:
-            print "You've freed the alien! Going home..."
-            alien.vel = vector(0,5,0)
-        
-        # need to handle wall collisions next...
-        # here is an example of one wall collision - you'll need more!
         
         # colliding with wall 0, w0:
         if snek.pos.x < w0.pos.x+1.5:  # w0 has the smallest x value
@@ -134,8 +88,6 @@ def main():
             snek.vel.z = -1.0 * snek.vel.z   # bounce (in the x direction)
 
         # ----- end of other checks - especially *collisions*  -----
-
-
 
 
         # ===== handling user events: keypresses and mouse =====
@@ -183,5 +135,4 @@ def main():
 
 # This should be the FINAL thing in the file...
 if __name__ == "__main__":   # did we just RUN this file?
-    main()                   # if so, we call main()
-
+    main() # if so, we call main()
