@@ -12,15 +12,17 @@ Snake Body
 
 `snek should face new direction when arrow keys are pressed`
 
-DONE? `add another sphere to the body after it eats a pellet`
+-`add another sphere to the body after it eats a pellet`-
 
-`End game`
+End game
 
 `die when the snake hits itself`
 
 `die when the snake hits walls`
 
 `display final score`
+
+`if snake takes up entire board (somehow) player should win`
 
 General gameplay
 
