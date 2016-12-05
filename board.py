@@ -38,6 +38,12 @@ def make_walls():
 def main():
     """ this is the main function, including all of the data objects and the "event loop" which is the while True: loop that will be the universe's "time stream" :-)
     """
+    # first, create a new scene (not required, but doesn't hurt)
+    scene = display(title='Game',
+                        x=0, y=0, width=1000, height=1000,
+                        center=(0,0,0), background=(0,0,0), forward=(0,-2,-1), userzoom=False, userspin=False)
+    scene.select()
+    
     # create an object named floor of class (type) box:
     floor = box(pos=(0,-1,0), length=40, width=40, height = 0.5, color=color.white)
 
