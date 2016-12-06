@@ -54,8 +54,8 @@ def main():
     autocenter = True     # do you want vPython to keep the scene centered?
 
     # Make a pellet
-    pelletposx = random.randint(-19,19)
-    pelletposz = random.randint(-19,19)
+    pelletposx = random.randint(-18,18)
+    pelletposz = random.randint(-18,18)
     pellet = sphere( radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white )
     bodypos = 0.5
 
@@ -71,12 +71,14 @@ def main():
 
 
         # ----- start of other checks - especially *collisions* -----
+        #pellet collision
         vec_from_pellet_to_snek = pellet.pos-snek.pos
         if mag(vec_from_pellet_to_snek) < 2:
             pellet.visible = False
-            pelletposx = random.randint(-19,19)
-            pelletposz = random.randint(-19,19)
+            pelletposx = random.randint(-18,18)
+            pelletposz = random.randint(-18,18)
             pellet = sphere( radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white )
+            #body handling
             body = sphere(frame = snek, pos=(bodypos,0,0), radius=.6 , color = color.brown, material=materials.BlueMarble)
             bodypos += 0.5        
         
@@ -103,16 +105,27 @@ def main():
 
         # ===== handling user events: keypresses and mouse =====
 
-        # here, we see if the user has pressed any keys
-        if scene.kb.keys:   # any keypress to be handled?
-            s = scene.kb.getkey() # print "You pressed the key", s  
-
-            # Key presses to give the snek velocity (in the x-z plane)
-            dx = .5; dz = .5   # easily-changeable values
-            if s == 'left': snek.vel = vector(-dx,0,0)
-            if s == 'right': snek.vel = vector(dx,0,0)
-            if s == 'up': snek.vel = vector(0,0,-dz)
-            if s == 'down': snek.vel = vector(0,0,dz)
+        # here, we see if the user has pressed any keys, cannot move backwards
+        if scene.kb.keys:   
+            s = scene.kb.getkey() 
+            dx = .5; dz = .5
+            if snek.vel == vector(dx,0,0):
+                if s == 'up': snek.vel = vector(0,0,-dz)
+                if s == 'down': snek.vel = vector(0,0,dz)
+            elif snek.vel == vector(-dx,0,0):
+                if s == 'up': snek.vel = vector(0,0,-dz)
+                if s == 'down': snek.vel = vector(0,0,dz)
+            elif snek.vel == vector(0,0,dz):
+                if s == 'left': snek.vel = vector(-dx,0,0)
+                if s == 'right': snek.vel = vector(dx,0,0)
+            elif snek.vel == vector(0,0,-dz):
+                if s == 'left': snek.vel = vector(-dx,0,0)
+                if s == 'right': snek.vel = vector(dx,0,0)
+            else:
+                if s == 'up': snek.vel = vector(0,0,-dz)
+                if s == 'down': snek.vel = vector(0,0,dz)
+                if s == 'left': snek.vel = vector(-dx,0,0)
+                if s == 'right': snek.vel = vector(dx,0,0)
 
             # space to stop everything
             if s == ' ':  # space to stop things
