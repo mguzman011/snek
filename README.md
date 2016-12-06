@@ -2,11 +2,13 @@
 
 #WHAT NEEDS TO BE IMPLEMENTED
 
-DONE Change the camera view
+Class Menu?
 
 Point counter
 
 `every time the snek eats a pellet, add a point`
+
+DONE -- Change the camera view
 
 Snake Body
 
