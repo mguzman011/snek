@@ -2,11 +2,13 @@
 
 #WHAT NEEDS TO BE IMPLEMENTED
 
-DONE Change the camera view
+Class Menu?
 
 Point counter
 
 `every time the snek eats a pellet, add a point`
+
+DONE -- Change the camera view
 
 Snake Body
 
@@ -26,7 +28,7 @@ End game
 
 General gameplay
 
-`new pellet should be added to a random location on the board`
+//`new pellet should be added to a random location on the board`//
 
 #Ideas for later
 Grutor mode
