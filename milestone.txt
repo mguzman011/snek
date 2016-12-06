@@ -1,5 +1,7 @@
 Group: Michael Guzman, Shruthi Sukir, Emily Zhao
 
-Project: Python (Snake) game
+Project: Python (Snake) game - vPython
 
-This is the classic game of snake. The objective is to get as many points as possible. 
+This is the classic game of snake. The objective is to get as many points as possible by 'eating' the pellets. Currently, the you can eat the pellets and more pellets will respawn. The snake movement does not currently work.
+
+You run the file using board.py. Move using the arrow keys. 
