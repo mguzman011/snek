@@ -9,7 +9,7 @@ import random
 def make_snek():
     snek = frame( pos=(0,0,0) )
     color.brown = (0.46,0.28,0.1)
-    python = sphere(frame = snek, pos=(-0.5,0,0), radius = 1, color = color.brown, material=materials.BlueMarble)
+    python = sphere(frame = snek, pos=(-0.5,0,0), radius = 10, color = color.brown,  material = materials.texture(data=materials.loadTGA("21-Texture-Snake"), mapping="top"))
     #python1 = sphere(frame = snek, pos=(0.5,0,0),radius=.6, color = color.brown, material=materials.BlueMarble)
     #eye = sphere(frame = snek, pos=(-1.2,0.42,0.4),radius=0.2,color = color.orange)
     #eye2 = sphere(frame = snek, pos=(-1.2,0.42,-0.4),radius=0.2,color = color.orange)
