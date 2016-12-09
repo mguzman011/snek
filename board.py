@@ -61,7 +61,8 @@ def main():
 
     # Game Over
     def reset():
-        gameover = text(text='GAME OVER',font='comic sans',depth=-1,height=4,width=2,color=color.red,pos=(0,0,-10),axis=(.10,0,0),align='center')
+        gameover = text(text='GAME OVER',font='comic sans',depth=.0005,height=4,width=2,color=color.black,pos=(0,0,-10),axis=(1,0,0),align='center')
+        gameover.rotate(angle=pi/4, axis=(-1,0,0))
         sleep(2)
         snek.vel = vector(0,0,0)
         snek.pos = vector(0,0,0)
