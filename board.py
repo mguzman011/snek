@@ -22,14 +22,10 @@ def make_snek():
 def make_walls():
     """ makes several walls and returns them in a list
     """
-    w0 = box(pos=(-20,0,0), axis=(0,0,1), 
-             length=40, width=1, height = 2, color=color.red, material=materials.wood)
-    w1 = box(pos=(0,0,-20), axis=(1,0,0), 
-             length=40, width=1, height = 2, color=color.red, material=materials.wood)
-    w2 = box(pos=(0,0,20), axis=(1,0,0), 
-             length=40, width=1, height = 2, color=color.red, material=materials.wood)
-    w3 = box(pos=(20,0,0), axis=(0,0,1), 
-             length=40, width=1, height = 2, color=color.red, material=materials.wood)
+    w0 = box(pos=(-20,0,0), axis=(0,0,1), length=40, width=1, height = 2, color=color.red, material=materials.wood)
+    w1 = box(pos=(0,0,-20), axis=(1,0,0), length=40, width=1, height = 2, color=color.red, material=materials.wood)
+    w2 = box(pos=(0,0,20), axis=(1,0,0), length=40, width=1, height = 2, color=color.red, material=materials.wood)
+    w3 = box(pos=(20,0,0), axis=(0,0,1), length=40, width=1, height = 2, color=color.red, material=materials.wood)
     list_of_walls = [ w0, w1 , w2, w3]
     return list_of_walls
 
@@ -44,7 +40,6 @@ def main():
     Walls = make_walls()
     w0, w1, w2, w3 = Walls   # and gives each one a name...
 
-
     snek = make_snek()
     snek.vel = vector(0,0,0)
 
@@ -56,8 +51,17 @@ def main():
     # Make a pellet
     pelletposx = random.randint(-18,18)
     pelletposz = random.randint(-18,18)
-    pellet = sphere( radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white )
-    bodypos = 0.5
+    pellet = sphere(radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white)
+    bodypos = 1
+    bodycount = 0
+
+    # Scoring
+    score = 0
+    scorelbl = label(pos = (-18,24,0), text='Score: %d'%score, box = False)
+
+    # Game Over
+    def gameOver():
+        text(text='GAME OVER',font='comic sans',depth=-1,height=4,width=2,color=color.red,pos=(0,0,-10),axis=(.10,0,0),align='center')
 
     # this is the main loop of the program! it's "time" or the "event loop"
     while True:
@@ -74,29 +78,38 @@ def main():
         #pellet collision
         vec_from_pellet_to_snek = pellet.pos-snek.pos
         if mag(vec_from_pellet_to_snek) < 2:
+            score += 1
+            scorelbl = label(pos = (-18,24,0), text='Score: %d'%score, box = False)
             pellet.visible = False
             pelletposx = random.randint(-18,18)
             pelletposz = random.randint(-18,18)
-            pellet = sphere( radius=0.5, pos=(pelletposx,0,pelletposz), color = color.white )
+            pellet = sphere(radius = 0.5, pos = (pelletposx, 0 , pelletposz), color = color.white)
             #body handling
-            body = sphere(frame = snek, pos=(bodypos,0,0), radius=.6 , color = color.brown, material=materials.BlueMarble)
-            bodypos += 0.5        
+            #body = sphere(frame = snek, pos=(bodypos,0,0), radius=.6 , color = color.brown, material=materials.BlueMarble)
+            #bodycount += 1
+            #bodypos += 1    
+                
+
         
         # colliding with wall 0, w0:
         if snek.pos.x < w0.pos.x+1.5:  # w0 has the smallest x value
             snek.pos.x = w0.pos.x+1.5  # make sure we stay in bounds
             snek.vel.x = 0   # bounce (in the x direction)
-            exit()
+            gameOver()
+        # colliding with wall 1, w1:
         if snek.pos.z < w1.pos.z+1.5:  # w1 has the smallest z value
             snek.pos.z = w1.pos.z+1.5  # make sure we stay in bounds
             snek.vel.z = 0   # bounce (in the x direction)
-            exit()
-        if snek.pos.x > w2.pos.x +18.5:  # w0 has the smallest x value
+            gameOver()
+         # colliding with wall 0, w0:
+        if snek.pos.x > w2.pos.x +18.5:  # w2 has the largest x value
             snek.pos.x = w2.pos.x +18.5  # make sure we stay in bounds
             snek.vel.x = 0   # bounce (in the x direction)
-            exit()
-        if snek.pos.z > w3.pos.z+18.5:  # w0 has the smallest x value
-            snek.pos.z = w3.pos.z+18.5  # make sure we stay in bounds
+            gameOver()
+        # colliding with wall 0, w0:
+
+        if snek.pos.z > w3.pos.z + 18.5:  # w3 has the largest x value
+            snek.pos.z = w3.pos.z + 18.5  # make sure we stay in bounds
             snek.vel.z = 0   # bounce (in the x direction)
             exit()
 
@@ -146,5 +159,6 @@ def main():
 
 
 # This should be the FINAL thing in the file...
+#c:\Python27\python board.py
 if __name__ == "__main__":   # did we just RUN this file?
-    main()                   # if so, we call main()
+    main() # if so, we call main()
