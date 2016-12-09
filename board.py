@@ -32,7 +32,7 @@ def make_walls():
 def main():
     """ this is the main function, including all of the data objects and the "event loop" which is the while True: loop that will be the universe's "time stream" :-)
     """
-    scene = display(title='Game',x=0, y=0, width=1000, height=1000,center=(0,0,0), background=(0,0,0), forward=(0,-2,-1), userzoom=False, userspin=False) #camera move
+    scene = display(title='Game',x=0, y=0, width=1000, height=700,center=(0,0,0), background=(0,0,0), forward=(0,-2,0), userzoom=False, userspin=False) #camera move
     # create an object named floor of class (type) box:
     floor = box(pos=(0,-1,0), length=40, width=40, height = 0.5, color=color.white)
 
@@ -60,8 +60,15 @@ def main():
     scorelbl = label(pos = (-18,24,0), text='Score: %d'%score, box = False)
 
     # Game Over
-    def gameOver():
-        text(text='GAME OVER',font='comic sans',depth=-1,height=4,width=2,color=color.red,pos=(0,0,-10),axis=(.10,0,0),align='center')
+    def reset():
+        gameover = text(text='GAME OVER',font='comic sans',depth=-1,height=4,width=2,color=color.red,pos=(0,0,-10),axis=(.10,0,0),align='center')
+        sleep(2)
+        snek.vel = vector(0,0,0)
+        snek.pos = vector(0,0,0)
+        gameover.visible = False
+        score = 0
+        scorelbl = label(pos = (-18,24,0), text='Score: %d'%score, box = False)
+
 
     # this is the main loop of the program! it's "time" or the "event loop"
     while True:
@@ -87,31 +94,32 @@ def main():
             #body handling
             #body = sphere(frame = snek, pos=(bodypos,0,0), radius=.6 , color = color.brown, material=materials.BlueMarble)
             #bodycount += 1
-            #bodypos += 1    
-                
+            #bodypos += 1   
 
-        
+
+ 
+                
         # colliding with wall 0, w0:
         if snek.pos.x < w0.pos.x+1.5:  # w0 has the smallest x value
             snek.pos.x = w0.pos.x+1.5  # make sure we stay in bounds
             snek.vel.x = 0   # bounce (in the x direction)
-            gameOver()
+            reset()
         # colliding with wall 1, w1:
         if snek.pos.z < w1.pos.z+1.5:  # w1 has the smallest z value
             snek.pos.z = w1.pos.z+1.5  # make sure we stay in bounds
             snek.vel.z = 0   # bounce (in the x direction)
-            gameOver()
+            reset()
          # colliding with wall 0, w0:
         if snek.pos.x > w2.pos.x +18.5:  # w2 has the largest x value
             snek.pos.x = w2.pos.x +18.5  # make sure we stay in bounds
             snek.vel.x = 0   # bounce (in the x direction)
-            gameOver()
+            reset()
         # colliding with wall 0, w0:
 
         if snek.pos.z > w3.pos.z + 18.5:  # w3 has the largest x value
             snek.pos.z = w3.pos.z + 18.5  # make sure we stay in bounds
             snek.vel.z = 0   # bounce (in the x direction)
-            exit()
+            reset()
 
         # ----- end of other checks - especially *collisions*  -----
 
