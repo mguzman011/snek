@@ -1,3 +1,4 @@
+
 from visual import *
 import random
 
@@ -57,20 +58,6 @@ def main():
     score = 0
     scorelbl=label(pos=(-15,24,-10),text='score: %d'%score,box=False,visible=False)
 
-
-
-    def reset():
-        """resets the program; puts a Game Over sign, waits, then resets the board and the score
-        """
-        gameover = text(text='GAME OVER',font='comic sans',depth=.0005,height=4,width=2,color=color.red,pos=(0,0,-10),axis=(1,0,0),align='center')
-        gameover.rotate(angle=pi/4, axis=(-1,0,0))
-        # sleep(2)      
-        snekvel = vector(0,0,0)
-        #snekpos = vector(0,0,0)
-        gameover.visible = False
-        score = 0
-        scorelbl = label(pos = (-15,24,-10), text='Score: %d'%score, box = False)
-
     def follow():
         """ makes each new piece of the snake follow the head
         """
@@ -102,7 +89,7 @@ def main():
             # reset()
             # count = 0
             # break
-            exit()
+            break
         # colliding with wall 1, w1:
         if snek[0].pos.z < w1.pos.z+1.5:  # w1 has the smallest z value
             # follow()
@@ -112,9 +99,9 @@ def main():
             # reset()
             # count = 0
             # break
-            exit()
+            break
          # colliding with wall 0, w0:
-        if snek[0].pos.x > w2.pos.x +18.5:  # w2 has the largest x value
+        if snek[0].pos.x > w2.pos.x + 18.5:  # w2 has the largest x value
             # follow()
             # python.visible = False
             # for i in L[::-1]:
@@ -122,7 +109,7 @@ def main():
             # reset()
             # count = 0
             # break
-            exit()
+            break
         # colliding with wall 0, w0:
         if snek[0].pos.z > w3.pos.z + 18.5:  # w3 has the largest x value
             # follow()
@@ -132,7 +119,7 @@ def main():
             # reset()
             # count = 0
             # break
-            exit()
+            break
         # if (snek[0].pos+snekvel).x < w0.pos.x+0.5:  # w0 has the smallest x value  
         #     break
         # if (snek[0].pos+snekvel).z < w1.pos.z+0.5:  # w1 has the smallest z value 
@@ -145,6 +132,12 @@ def main():
         #     if snek[0].pos==snek[i].pos:
         #         break
         follow()
+
+        #Snake Collides With Self
+        for i in L[1:]:
+            if snek[0].pos == snek[i].pos:
+                exit(main())
+                exit()
 
         # When pellet is eaten, add to body, add to score, 
         snekpellet = abs(snek[0].pos - pellet.pos)
@@ -195,4 +188,3 @@ def main():
 #c:\Python27\python Python.py
 if __name__ == "__main__":   # did we just RUN this file?
     main() # if so, we call main()
-
